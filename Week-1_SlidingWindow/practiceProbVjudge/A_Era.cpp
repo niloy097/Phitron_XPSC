@@ -19,8 +19,7 @@ int main()
         long long int op = 0;
         for(int i = 1; i <= n; i++)
         {
-            if(i == 1) op += (arr[i] - arr[i-1]);
-            else if(arr[i] > i) op += ((arr[i] - arr[i-1]) - 1);
+            if(arr[i] > i+op) op += (arr[i] - (i+op));
         }
         cout << op << endl;
     }
