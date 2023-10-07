@@ -1,32 +1,45 @@
 #include<bits/stdc++.h>
-#define ROCKET ios :: sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
-#define ll long long
-#define fr(x, s, e, b) for(int x = s; x < e; x = x + b)
-#define efr(val, where) for(auto& val : where)
-#define el '\n'
-#define co cout
-#define ci cin
-#define vtr vector
-#define pb push_back
 using namespace std;
-void solve()
+int longestSubstrDistinctChars (string S);
+int main()
 {
-    string x; cin >> x;
-    vtr<int> freq(26, 0);
-    int maxSz = 0;
-    fr(i, 0, x.size(), 1)
+    int t; cin >> t;
+    while (t--)
     {
-        freq[x[i] - 'a']++;
-    }
-    cout << maxSz << el;
-}
-signed main()
-{
-    ROCKET
+        string S; cin >> S;
 
-    int t = 1;
-    // cin >> t;
-    while(t--) solve();
-    
-    return 0;
+        cout << longestSubstrDistinctChars (S) << endl;
+    }
+}
+int longestSubstrDistinctChars (string s)
+{
+    int n = s.size();
+    map<char,int> m;
+    int mx = 0;
+    int i = 0, j = 0;
+    while(j < n)
+    {
+        m[s[j]]++;
+        
+        if(m.size() == j -i + 1)
+        {
+            mx = max(mx, j - i + 1);
+        }
+        else if(m.size() < j -i + 1)
+        {
+            while(m.size() < j- i + 1)
+            {
+               m[s[i]]--;
+               
+               if(m[s[i]] == 0)
+               {
+                   m.erase(s[i]);
+               }
+               
+               i++;
+            }
+        }
+        j++;
+    }
+    return mx;
 }
