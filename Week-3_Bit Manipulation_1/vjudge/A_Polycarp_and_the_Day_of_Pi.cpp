@@ -55,54 +55,25 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int grid[n][m];
-    fr(i, 0, n, 1)
+    string pi = "31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
+    string x; cin >> x;
+    int cnt = 0;
+    int i = 0;
+    efr(ch, pi)
     {
-        fr(j, 0, m, 1)
+        if(i == x.size()) break;
+        if(ch == x[i])
         {
-            cin >> grid[i][j];
+            cnt++;
+            i++;
         }
-    }
-    vtr<int> aSum;
-    fr(i, 0, n, 1)
-    {
-        fr(j, 0, m, 1)
+        else
         {
-            int target = grid[i][j];
-            int sum = target;
-            //upRight
-            for(int k = i - 1, l = j + 1; k >= 0 && l < m; k--, l++)
-            {
-                sum += grid[k][l];
-            }
-
-            //upLeft
-            for(int k = i-1, l = j-1; k >= 0 && l >= 0; k--, l--)
-            {
-                sum += grid[k][l];
-            }
-
-            //DownLeft
-            for(int k = i+1, l = j-1; k < n && l >= 0; k++, l--)
-            {
-                sum += grid[k][l];
-            }
-
-            //DownRight
-            for(int k = i+1, l = j+1; k < n && l < m; k++, l++)
-            {
-                sum += grid[k][l];
-            }
-
-            aSum.push_back(sum);
+            break;
         }
     }
 
-    int maxSum = imin;
-    efr(val, aSum) maxSum = max(maxSum, val);
-    cout << maxSum << el;
+    cout << cnt << el;
 }
 signed main()
 {

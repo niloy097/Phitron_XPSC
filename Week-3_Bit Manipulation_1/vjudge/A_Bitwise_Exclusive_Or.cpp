@@ -55,61 +55,15 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int grid[n][m];
-    fr(i, 0, n, 1)
-    {
-        fr(j, 0, m, 1)
-        {
-            cin >> grid[i][j];
-        }
-    }
-    vtr<int> aSum;
-    fr(i, 0, n, 1)
-    {
-        fr(j, 0, m, 1)
-        {
-            int target = grid[i][j];
-            int sum = target;
-            //upRight
-            for(int k = i - 1, l = j + 1; k >= 0 && l < m; k--, l++)
-            {
-                sum += grid[k][l];
-            }
-
-            //upLeft
-            for(int k = i-1, l = j-1; k >= 0 && l >= 0; k--, l--)
-            {
-                sum += grid[k][l];
-            }
-
-            //DownLeft
-            for(int k = i+1, l = j-1; k < n && l >= 0; k++, l--)
-            {
-                sum += grid[k][l];
-            }
-
-            //DownRight
-            for(int k = i+1, l = j+1; k < n && l < m; k++, l++)
-            {
-                sum += grid[k][l];
-            }
-
-            aSum.push_back(sum);
-        }
-    }
-
-    int maxSum = imin;
-    efr(val, aSum) maxSum = max(maxSum, val);
-    cout << maxSum << el;
+    int a, b; cin >> a >> b;
+    cout << (a ^ b) << el;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

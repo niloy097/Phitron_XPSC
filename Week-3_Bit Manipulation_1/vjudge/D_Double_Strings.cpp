@@ -55,54 +55,47 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int grid[n][m];
+    int n; cin >> n;
+    map<string, int> mp;
+    vtr<string> v;
     fr(i, 0, n, 1)
     {
-        fr(j, 0, m, 1)
-        {
-            cin >> grid[i][j];
-        }
+        string x; cin >> x;
+        v.pb(x);
+        mp[x]++;
     }
-    vtr<int> aSum;
-    fr(i, 0, n, 1)
+    vtr<char>ans;
+    fr(i, 0, v.size(), 1)
     {
-        fr(j, 0, m, 1)
+        bool flag = false;
+        string x = v[i];
+        string sp1 = "", sp2 = "";
+        fr(j, 0, x.size(), 1)
         {
-            int target = grid[i][j];
-            int sum = target;
-            //upRight
-            for(int k = i - 1, l = j + 1; k >= 0 && l < m; k--, l++)
+            fr(a, 0, j, 1)
             {
-                sum += grid[k][l];
+                sp1 += x[a];
             }
-
-            //upLeft
-            for(int k = i-1, l = j-1; k >= 0 && l >= 0; k--, l--)
+            fr(b, j, x.size(), 1)
             {
-                sum += grid[k][l];
+                sp2 += x[b];
             }
-
-            //DownLeft
-            for(int k = i+1, l = j-1; k < n && l >= 0; k++, l--)
+            if(mp[sp1] > 0 && mp[sp2] > 0)
             {
-                sum += grid[k][l];
+                flag = true;
+                break;
             }
-
-            //DownRight
-            for(int k = i+1, l = j+1; k < n && l < m; k++, l++)
+            else
             {
-                sum += grid[k][l];
+                sp1.clear(), sp2.clear();
             }
-
-            aSum.push_back(sum);
         }
+        if(flag) ans.push_back('1');
+        else ans.pb('0');
     }
 
-    int maxSum = imin;
-    efr(val, aSum) maxSum = max(maxSum, val);
-    cout << maxSum << el;
+    efr(v, ans) cout << v;
+    cout << el;
 }
 signed main()
 {

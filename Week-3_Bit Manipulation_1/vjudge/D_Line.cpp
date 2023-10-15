@@ -55,54 +55,41 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    int grid[n][m];
+    int n; cin >> n;
+    string x; cin >> x;
+    ll rsum = 0;
+    // vtr<int> ans;
     fr(i, 0, n, 1)
     {
-        fr(j, 0, m, 1)
+        if(x[i] == 'L')
         {
-            cin >> grid[i][j];
+            rsum += i;
+        }
+        else
+        {
+            rsum += n - 1 - i;
         }
     }
-    vtr<int> aSum;
+    vtr<int> change;
     fr(i, 0, n, 1)
     {
-        fr(j, 0, m, 1)
+        if(x[i] == 'L')
         {
-            int target = grid[i][j];
-            int sum = target;
-            //upRight
-            for(int k = i - 1, l = j + 1; k >= 0 && l < m; k--, l++)
-            {
-                sum += grid[k][l];
-            }
-
-            //upLeft
-            for(int k = i-1, l = j-1; k >= 0 && l >= 0; k--, l--)
-            {
-                sum += grid[k][l];
-            }
-
-            //DownLeft
-            for(int k = i+1, l = j-1; k < n && l >= 0; k++, l--)
-            {
-                sum += grid[k][l];
-            }
-
-            //DownRight
-            for(int k = i+1, l = j+1; k < n && l < m; k++, l++)
-            {
-                sum += grid[k][l];
-            }
-
-            aSum.push_back(sum);
+            change.pb((n - i - 1) - i);
+        }
+        else
+        {
+            change.pb(i - (n - i - 1));
         }
     }
 
-    int maxSum = imin;
-    efr(val, aSum) maxSum = max(maxSum, val);
-    cout << maxSum << el;
+    sort(change.begin(), change.end(), greater<int>());
+    for(int i = 0; i < n; i++)
+    {
+        if(change[i] > 0) rsum += change[i];
+        cout << rsum << " ";
+    }
+    cout << el;
 }
 signed main()
 {
