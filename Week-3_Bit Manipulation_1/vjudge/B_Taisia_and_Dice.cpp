@@ -67,35 +67,26 @@ void solve()
     int n, s, r;
     cin >> n >> s >> r;
     int missed = s - r;
-    vtr<int> ans;
-    if (n == 2)
+    vtr<int> ans(n+1);
+    ans[0] = 0;
+    int remSum = s;
+    int allow = missed;
+    for(int i = 1; i < n + 1; i++)
     {
-        cout << r << " " << s - r << el;
-    }
-    else if (r % (n - 1) == 0)
-    {
-        int need = r / (n - 1);
-        fr(i, 0, n - 1, 1)
+        while(remSum - allow < n - i)
         {
-            ans.pb(need);
+            allow -= 1;
         }
-        ans.pb(missed);
-        efr(x, ans) cout << x << " ";
-        cout << el;
-    }
-    else
-    {
-        int need = ceil((r * 1.0) / (n - 1));
-        fr(i, 0, n - 2, 1)
+        if(remSum - allow >= n - i)
         {
-            ans.pb(need);
+            ans[i] = allow;
+            remSum -= allow;
         }
-        ans.pb(missed);
-        ans.pb(s - (((n - 2) * need) + missed) + 1);
-        ans[0] -= 1;
-        efr(x, ans) cout << x << " ";
-        cout << el;
+        
     }
+
+    fr(i, 1, n + 1, 1) cout << ans[i] << " ";
+    cout << el;
 }
 signed main()
 {
