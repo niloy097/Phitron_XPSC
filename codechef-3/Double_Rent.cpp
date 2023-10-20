@@ -56,34 +56,16 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n; cin >> n;
-    string s; cin >> s;
-    string idol = "meow";
-    string ans = "";
-    fr(i, 0, n, 1) 
-    {
-        if(s[i] >= 'A' && s[i] <= 'Z')
-        {
-            s[i] += 32;
-        }
-    }
-    fr(i, 0, n, 1)
-    {
-        if(ans.empty() or ans.back() != s[i])
-        {
-            ans.pb(s[i]);
-        }
-    }
-    // cout << ans << el;
-    if(ans == idol) cout << "YES" << el;
-    else cout << "NO" << el;
+    int n;
+    cin >> n;
+    cout << (2 * n) << el;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

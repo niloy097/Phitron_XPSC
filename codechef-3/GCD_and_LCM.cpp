@@ -40,7 +40,7 @@ ll gcd(ll a, ll b)
 {
     if(a < b) swap(a, b);
     ll ans;
-    int rem = 1;
+    ll rem = 1;
     while(true)
     {
         rem = a % b;
@@ -54,29 +54,36 @@ ll gcd(ll a, ll b)
     }
     return ans;
 }
+ll lmc(ll a, ll b, ll g)
+{
+    return (a * b) / g;
+}
 void solve()
 {
-    int n; cin >> n;
-    string s; cin >> s;
-    string idol = "meow";
-    string ans = "";
-    fr(i, 0, n, 1) 
+    ll a, b, k; cin >> a >> b >> k;
+    ll p = a, q = b;
+    ll r = a, s = b;
+    ll o1 = k;
+    while(o1--)
     {
-        if(s[i] >= 'A' && s[i] <= 'Z')
-        {
-            s[i] += 32;
-        }
+        ll x = gcd(p, q);
+        p > q ? p = x : q = x;
+        ll y = lmc(p, q, x);
+        p > q ? p = y : q = y;
     }
-    fr(i, 0, n, 1)
+    // cout << p + q << el;
+    ll ans1 = p + q;
+    ll o2 = k;
+    while(o2--)
     {
-        if(ans.empty() or ans.back() != s[i])
-        {
-            ans.pb(s[i]);
-        }
+        ll x = gcd(r, s);
+        r > s ? r = x : s = x;
+        ll y = lmc(r, s, x);
+        r > s ? r = y : s = y;
     }
-    // cout << ans << el;
-    if(ans == idol) cout << "YES" << el;
-    else cout << "NO" << el;
+    ll ans2 = r + s;
+
+    cout << max(ans1, ans2) << el;
 }
 signed main()
 {

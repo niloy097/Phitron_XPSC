@@ -56,27 +56,42 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n; cin >> n;
-    string s; cin >> s;
-    string idol = "meow";
-    string ans = "";
-    fr(i, 0, n, 1) 
-    {
-        if(s[i] >= 'A' && s[i] <= 'Z')
-        {
-            s[i] += 32;
-        }
-    }
+    ll n, k; cin >> n >> k;
+    ll sum = 0;
+    vtr<int> v(n), ans(n);
     fr(i, 0, n, 1)
     {
-        if(ans.empty() or ans.back() != s[i])
-        {
-            ans.pb(s[i]);
-        }
+        ll x; cin >> x;
+        v[i] = x;
+        sum += x;
     }
-    // cout << ans << el;
-    if(ans == idol) cout << "YES" << el;
-    else cout << "NO" << el;
+    ll ps = sum / n;
+    if(ps == 0) cout << "NO" << el;
+    else
+    {
+        int mod = sum % n;
+        fr(i, 0, n, 1)
+        {
+            ans[i] = ps;
+        }
+        fr(i, 0, mod, 1)
+        {
+            ans[i] += 1;
+        }
+        sort(ans.begin(), ans.end());
+        bool flag = true;
+        fr(i, 0, n - 1, 1)
+        {
+            if((ans[i + 1] - ans[i]) > k)
+            {
+                flag = false;
+                break;
+            }
+        }
+
+        if(flag) cout << "YES" << el;
+        else cout << "NO" << el;
+    }
 }
 signed main()
 {

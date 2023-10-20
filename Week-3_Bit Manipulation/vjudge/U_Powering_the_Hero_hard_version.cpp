@@ -56,27 +56,19 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n; cin >> n;
-    string s; cin >> s;
-    string idol = "meow";
-    string ans = "";
-    fr(i, 0, n, 1) 
+    int n;
+    cin >> n;
+    priority_queue<int> q;
+    long long r = 0;
+    while (n--)
     {
-        if(s[i] >= 'A' && s[i] <= 'Z')
-        {
-            s[i] += 32;
-        }
+        int x;
+        cin >> x;
+        q.push(x);
+        if (x == 0)
+            r += q.top(), q.pop();
     }
-    fr(i, 0, n, 1)
-    {
-        if(ans.empty() or ans.back() != s[i])
-        {
-            ans.pb(s[i]);
-        }
-    }
-    // cout << ans << el;
-    if(ans == idol) cout << "YES" << el;
-    else cout << "NO" << el;
+    cout << r << endl;
 }
 signed main()
 {
