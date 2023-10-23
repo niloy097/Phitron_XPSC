@@ -56,19 +56,43 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
-    fr(i, 0, n, 1)
+    ll n, m;
+    cin >> n >> m;
+
+    if(n < m || m % 10 == 0 || m == 0)
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
+        cout << 0 << endl;
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+    else
+    {
+        ll ans = 0;
+        if (m % 2 == 0)
+        {
+            ans += (n / (m * 10)) * 40;
+        }
+        else
+        {
+            if (m % 5 == 0)
+            {
+                ans += (n / (m * 10)) * 25;
+            }
+            else
+            {
+                ans += (n / (m * 10)) * 45;
+            }
+        }
+
+        ll k = n % (m * 10);
+        k /= m;
+
+        while (k--)
+        {
+            ll x = (k + 1) * m;
+            x %= 10;
+            ans += x;
+        }
+        cout << ans << endl;
+    }
 }
 signed main()
 {

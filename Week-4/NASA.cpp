@@ -54,26 +54,54 @@ ll gcd(ll a, ll b)
     }
     return ans;
 }
-void solve()
+vtr<int> palindroms;
+void getPal()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
-    fr(i, 0, n, 1)
+    int mx = 1 << 15; // pow(2, 15)
+    fr(i, 0, mx, 1)
     {
-        if((k & (v[i])) == k)
+        string x = to_string(i);
+        if(isPalindrom(x))
         {
-            ans &= v[i];
+            int y = stoi(x);
+            palindroms.pb(y);
         }
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+}
+void solve()
+{
+    int n; cin >> n;
+    vtr<int> v(n);
+    unordered_map<int, int> mp;
+    fr(i, 0, n, 1)
+    {
+        cin >> v[i];
+        mp[v[i]]++;
+    }
+    ll ans = 0;
+    fr(i, 0, n, 1)
+    {
+        fr(j, 0, palindroms.size(), 1)
+        {
+            if((v[i] ^ palindroms[j]) <= v[i]) continue;
+            //if a > b then a ^ b >= a
+            if(mp.find(v[i] ^ palindroms[j]) != mp.end())
+            {
+                ans += mp[v[i] ^ palindroms[j]];
+            }
+        }
+    }
+    efr(it, mp)
+    {
+        ans += ((ll)it.second * (it.second + 1)) / 2;
+    }
+    cout << ans << el;
+
 }
 signed main()
 {
     ROCKET
-
+    getPal();
     int t = 1;
     cin >> t;
     while(t--) solve();

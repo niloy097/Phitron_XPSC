@@ -56,26 +56,38 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
+    int n;
+    cin >> n;
+    vtr<pair<int, int>> p(n);
+
     fr(i, 0, n, 1)
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
+        cin >> p[i].first;
+        p[i].second = i + 1;
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+
+    sort(p.begin(), p.end(), greater<>());
+    ll ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        ans += p[i].first * i + 1;
+    }
+
+    cout << ans << endl;
+
+    cout << p[0].second;
+    for (int i = 1; i < n; i++)
+    {
+        cout << " " << p[i].second;
+    }
+    cout << endl;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

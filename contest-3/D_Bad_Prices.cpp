@@ -56,19 +56,20 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
+    int n; cin >> n;
+	vector <int> v(n);
     fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
-    fr(i, 0, n, 1)
+ 
+	int cnt = 0;
+	int mn = v[n-1];
+	rfr(i, n-1, 0, 1)
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
-    }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+		mn = min(v[i], mn);
+		if(v[i] > mn)
+			cnt++;
+		
+	}
+	cout << cnt << endl;  
 }
 signed main()
 {

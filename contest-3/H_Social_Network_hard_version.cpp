@@ -56,26 +56,38 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
+    ll n, k;
+    cin >> n >> k;
+    vtr<int> a(n);
+    fr(i, 0, n, 1) cin >> a[i];
+    queue<ll> qu;
+    map<ll, ll> mp;
     fr(i, 0, n, 1)
     {
-        if((k & (v[i])) == k)
+        if (mp.count(a[i]))
+            continue;
+        qu.push(a[i]);
+        mp[a[i]]++;
+        if (qu.size() > k)
         {
-            ans &= v[i];
+            mp.erase(qu.front());
+            qu.pop();
         }
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+    cout << qu.size() << endl;
+    vtr<int> ans(qu.size());
+    fr(i, 0, ans.size(), 1) ans[ans.size() - 1 - i] = qu.front(),
+    qu.pop();
+    fr(i, 0, ans.size(), 1)
+        cout << ans[i] << " ";
+    cout << el;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

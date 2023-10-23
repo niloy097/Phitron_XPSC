@@ -56,19 +56,21 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
-    fr(i, 0, n, 1)
+    vtr<int> pin(4);
+    string x; cin >> x;
+    fr(i, 0, 4, 1) 
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
+        int val = x[i] - '0';
+        if(val == 0) pin[i] = 10;
+        else pin[i] = val;
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+    int cnt = 0;
+    cnt = abs(pin[0] - 1);
+    cnt += abs(pin[0] - pin[1]);
+    cnt += abs(pin[1] - pin[2]);
+    cnt += abs(pin[2] - pin[3]);
+
+    cout << cnt + 4 << el;
 }
 signed main()
 {

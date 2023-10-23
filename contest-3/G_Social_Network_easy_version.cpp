@@ -54,28 +54,50 @@ ll gcd(ll a, ll b)
     }
     return ans;
 }
+bool okee(queue<int> temp, int x)
+{
+    while(!temp.empty())
+    {
+        if(temp.front() == x) return true;
+        temp.pop();
+    }
+    return false;
+}
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
+    int n, k;
+    cin >> n >> k;
+    queue<int> qu;
     fr(i, 0, n, 1)
     {
-        if((k & (v[i])) == k)
+        int x;
+        cin >> x;
+        if(!okee(qu, x))
         {
-            ans &= v[i];
+            qu.push(x);
+            if (qu.size() > k)
+            {
+                qu.pop();
+            }
         }
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+    vtr<int> v;
+    cout << qu.size() << endl;
+    while(!qu.empty())
+    {
+        v.pb(qu.front());
+        qu.pop();
+    }
+    reverse(all(v));
+    efr(x, v) cout << x << el;
+    cout << el;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

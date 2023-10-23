@@ -56,26 +56,22 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
-    fr(i, 0, n, 1)
+    int n; string s;
+    cin >> n >> s;
+    int k = 0;
+    for(int i = 0; i < n - 1; i += 2)
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
+        if (s[i] - s[i + 1] == 0)
+            s[i] = 'a' + 'b' - s[i], k++;
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+    cout << k << endl << s;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

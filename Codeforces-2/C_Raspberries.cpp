@@ -57,18 +57,22 @@ ll gcd(ll a, ll b)
 void solve()
 {
     int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
+    int even = 0, ans = k;
     fr(i, 0, n, 1)
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
+        int x; cin>> x;
+        if(x % 2 == 0) even++;
+        if(x % k == 0) ans = 0;
+        ans = min(ans, k - x % k);
     }
-    if(ans == k) cout << "YES" << el;
-    else cout << "NO" << el;
+
+    if(k == 4)
+    {
+        if(even >= 2) ans = 0;
+        else if(even == 1) ans = min (ans, 1);
+        else ans = min(ans, 2);
+    }
+    cout << ans << el;
 }
 signed main()
 {

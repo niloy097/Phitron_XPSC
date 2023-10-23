@@ -57,17 +57,22 @@ ll gcd(ll a, ll b)
 void solve()
 {
     int n, k; cin >> n >> k;
-    vtr<int> v(n);
-    fr(i, 0, n, 1) cin >> v[i];
-    ll ans = -1;
+    string s; cin >> s;
+    map<char, int> mp;
     fr(i, 0, n, 1)
     {
-        if((k & (v[i])) == k)
-        {
-            ans &= v[i];
-        }
+        mp[s[i]]++;
     }
-    if(ans == k) cout << "YES" << el;
+    int cnt = 0;
+    efr(it, mp)
+    {
+        if(it.second % 2 != 0) cnt++;
+    }
+
+    if(cnt - 1 < 0) cnt = 0;
+    else cnt = cnt - 1;
+
+    if(k >= cnt && k <= n) cout << "YES" << el;
     else cout << "NO" << el;
 }
 signed main()
