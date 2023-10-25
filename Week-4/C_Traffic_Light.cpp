@@ -56,48 +56,39 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    ll n, q; cin >> n >> q;
-    vtr<ll> v(n);
-    ll even = 0, odd = 0;
-    ll sum = 0;
-    fr(i, 0, n, 1)
+    int n; cin >> n;
+    char ch; cin >> ch;
+    string x;
+    cin >> x;
+    if(ch == 'g') cout << 0 << el;
+    else
     {
-        cin >> v[i];
-        sum += v[i];
-        if(v[i] % 2 == 0) even++;
-        else odd++;
-    }
-    while(q--)
-    {
-        ll key, value; cin >> key >> value;
-        if(key == 0) //even
+        string tmpStr = x + x;
+        vtr<int> idx;
+        fr(i, 0, tmpStr.size(), 1)
         {
-            if(value % 2 == 0) //even
-            {
-                sum += (even * value);
-            }
-            else // odd
-            {
-                sum += (even * value);
-                odd += even;
-                even = 0;
-            }
+            if (tmpStr[i] == 'g')
+                idx.pb(i);
         }
-        else // odd
+        int mx = 0;
+        int mxidx = 0;
+        fr(i, 0, x.size(), 1)
         {
-            if(value % 2 == 0) // even
+            if (x[i] == ch)
             {
-                sum += (odd * value);
-            }
-            else // odd
-            {
-                sum += (odd * value);
-                even += odd;
-                odd = 0;
+                fr(j, mxidx, idx.size(), 1)
+                {
+                    if (idx[j] > i)
+                    {
+                        mx = max(mx, (idx[j] - i));
+                        mxidx = j;
+                        break;
+                    }
+                }
             }
         }
 
-        cout  << sum << el;
+        cout << mx << el;
     }
 }
 signed main()

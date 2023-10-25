@@ -56,56 +56,16 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    ll n, q; cin >> n >> q;
-    vtr<ll> v(n);
-    ll even = 0, odd = 0;
-    ll sum = 0;
-    fr(i, 0, n, 1)
-    {
-        cin >> v[i];
-        sum += v[i];
-        if(v[i] % 2 == 0) even++;
-        else odd++;
-    }
-    while(q--)
-    {
-        ll key, value; cin >> key >> value;
-        if(key == 0) //even
-        {
-            if(value % 2 == 0) //even
-            {
-                sum += (even * value);
-            }
-            else // odd
-            {
-                sum += (even * value);
-                odd += even;
-                even = 0;
-            }
-        }
-        else // odd
-        {
-            if(value % 2 == 0) // even
-            {
-                sum += (odd * value);
-            }
-            else // odd
-            {
-                sum += (odd * value);
-                even += odd;
-                odd = 0;
-            }
-        }
-
-        cout  << sum << el;
-    }
+    int n, m; cin >> n >> m;
+    int x , y ; cin >> x >> y;
+    cout << ((n * x) + (m * y)) << el;
 }
 signed main()
 {
     ROCKET
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--) solve();
     
     return 0;

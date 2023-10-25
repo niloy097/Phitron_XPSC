@@ -54,51 +54,19 @@ ll gcd(ll a, ll b)
     }
     return ans;
 }
+// vtr<int> days = {1, 2, 3, 4, 5, 6, 7};
 void solve()
 {
-    ll n, q; cin >> n >> q;
-    vtr<ll> v(n);
-    ll even = 0, odd = 0;
-    ll sum = 0;
-    fr(i, 0, n, 1)
+    int day = 1;
+    int n; cin >> n;
+    int cnt = 0;
+    fr(i, 1, n, 1)
     {
-        cin >> v[i];
-        sum += v[i];
-        if(v[i] % 2 == 0) even++;
-        else odd++;
+        day++;
+        if(day == 2) cnt++;
+        if(day == 7) day = 0;
     }
-    while(q--)
-    {
-        ll key, value; cin >> key >> value;
-        if(key == 0) //even
-        {
-            if(value % 2 == 0) //even
-            {
-                sum += (even * value);
-            }
-            else // odd
-            {
-                sum += (even * value);
-                odd += even;
-                even = 0;
-            }
-        }
-        else // odd
-        {
-            if(value % 2 == 0) // even
-            {
-                sum += (odd * value);
-            }
-            else // odd
-            {
-                sum += (odd * value);
-                even += odd;
-                odd = 0;
-            }
-        }
-
-        cout  << sum << el;
-    }
+    cout << cnt << el;
 }
 signed main()
 {

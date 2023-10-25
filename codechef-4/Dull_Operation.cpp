@@ -56,49 +56,27 @@ ll gcd(ll a, ll b)
 }
 void solve()
 {
-    ll n, q; cin >> n >> q;
-    vtr<ll> v(n);
-    ll even = 0, odd = 0;
-    ll sum = 0;
-    fr(i, 0, n, 1)
+    int n; cin >> n;
+    int x = 0;
+    int y = 0;
+    fr(i, 0, 30, 1)
     {
-        cin >> v[i];
-        sum += v[i];
-        if(v[i] % 2 == 0) even++;
-        else odd++;
+        if(((n >> i) % 2) == 1)
+        {
+            x |= (1 << i);
+            break;
+        }
     }
-    while(q--)
+    fr(i, 0, 30, 1)
     {
-        ll key, value; cin >> key >> value;
-        if(key == 0) //even
+        if(((n >> i) % 2 == 1) && (i != x))
         {
-            if(value % 2 == 0) //even
-            {
-                sum += (even * value);
-            }
-            else // odd
-            {
-                sum += (even * value);
-                odd += even;
-                even = 0;
-            }
+            y |= (1 << i);
+            break;
         }
-        else // odd
-        {
-            if(value % 2 == 0) // even
-            {
-                sum += (odd * value);
-            }
-            else // odd
-            {
-                sum += (odd * value);
-                even += odd;
-                odd = 0;
-            }
-        }
+    }
 
-        cout  << sum << el;
-    }
+    cout << x << " " << y << el;
 }
 signed main()
 {
