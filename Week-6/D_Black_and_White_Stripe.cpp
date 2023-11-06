@@ -88,36 +88,61 @@ ll digitSum(ll n)
     }
     return sum;
 }
+bool allWhite(string& x, char c)
+{
+    for(int i = 0; i < x.size(); i++)
+    {
+        if(x[i] != c) return false;
+    }
+    return true;
+}
+bool haveConseq(string& x, int k)
+{
+    int cnt = 0;
+    for(int i = 0; i < x.size(); i++)
+    {
+        if(x[i] == 'B')
+        {
+            cnt++;
+        }
+        if(cnt == k) return true;
+        if(x[i] == 'W')
+        {
+            cnt = 0;
+        }
+    }
+}
 void solve()
 {
-    string s, t; cin >> s >> t;
-    if(t.size() == 1)
-    {
-        if(t[0] == 'a')
-        {
-            cout << 1 << el;
-        }
-        else
-        {
-            ll ans = (1ll << s.size());
-            cout << ans << el;
-        }
-    }
+    int n, k; cin >> n >> k;
+    string x; cin >> x;
+    list<char> li;
+    int i = 0, j = 0;
+    int mn = 0;
+    int cnt = 0;
+    if(allWhite(x, 'W')) cout << k << el;
     else
     {
-        int cnt = 0;
-        fr(i, 0, t.size(), 1)
+        while (j < n)
         {
-            if(t[i] == 'a') cnt++;
+            li.push_back(x[j]);
+            if (x[j] == 'W')
+            {
+                cnt++;
+                // cout << "j: " << j << " c1: " << cnt << el;
+            }
+            if (j >= k - 1)
+            {
+                mn = min(mn, cnt);
+                if (x[i] == 'W' && j  > n - 1)
+                    cnt--;
+                // cout << "j: " << j << " c2: " << cnt << el;
+                i++;
+            }
+            j++;
         }
-        if(cnt > 0) cout << -1 << el;
-        else
-        {
-            ll ans = (1ll << s.size());
-            cout << ans << el;
-        }
+        cout << cnt << el;
     }
-    
 }
 signed main()
 {

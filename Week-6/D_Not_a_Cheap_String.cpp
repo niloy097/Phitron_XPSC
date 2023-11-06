@@ -88,36 +88,58 @@ ll digitSum(ll n)
     }
     return sum;
 }
+ll countCoast(string& a)
+{
+    ll cost = 0;
+    for(int i = 0; i < a.size(); i++)
+    {
+        cost += a[i] - 96;
+    }
+    return cost;
+}
+bool com(pair<int, pair<char, int>> a, pair<int, pair<char, int>> b)
+{
+    return (a.second > b.second);
+}
 void solve()
 {
-    string s, t; cin >> s >> t;
-    if(t.size() == 1)
+    string x; cin >> x;
+    int n; cin >> n;
+    vector<pair<int,pair<char, int>>> v(x.size());
+    for(int i = 0; i < x.size(); i++)
     {
-        if(t[0] == 'a')
-        {
-            cout << 1 << el;
-        }
-        else
-        {
-            ll ans = (1ll << s.size());
-            cout << ans << el;
-        }
+        v[i].first = i;
+        v[i].second.first = x[i];
+        v[i].second.second = x[i] - 96;
     }
+    // cout << v[0].first << el;
+    // for (int i = 0; i < v.size(); i++)
+    // {
+    //     cout << v[i].first << " " << v[i].second.first << " " << v[i].second.second << el;
+    // }
+    sort(v.begin(), v.end(), com);
+    // for (int i = 0; i < v.size(); i++)
+    // {
+    //     cout << v[i].first << " " << v[i].second.first << " " << v[i].second.second << el;
+    // }
+
+    if(n >= countCoast(x)) cout << x << el;
     else
     {
-        int cnt = 0;
-        fr(i, 0, t.size(), 1)
+        ll cost = countCoast(x);
+        for(int i = 0; i < v.size(); i++)
         {
-            if(t[i] == 'a') cnt++;
+            cost -= v[i].second.second;
+            x[v[i].first] = 1; 
+            if(cost <= n) break;
         }
-        if(cnt > 0) cout << -1 << el;
-        else
+
+        efr(val, x)
         {
-            ll ans = (1ll << s.size());
-            cout << ans << el;
+            if(val != 1) cout << val;
         }
+        cout << el;
     }
-    
 }
 signed main()
 {
