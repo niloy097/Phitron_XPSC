@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 #define ROCKET ios :: sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 #define ll long long
@@ -28,7 +27,7 @@ bool isPalindrom(string x)
 }
 bool isEven(ll n)
 {
-    return n % 2 == 0;
+    return n % (ll)2 == 0;
 }
 bool isOdd(ll n)
 {
@@ -91,8 +90,9 @@ ll digitSum(ll n)
 }
 void solve()
 {
-    cout << gcd(5, gcd(3, 1)) << el;
-    cout << gcd(4, 2) << el;
+    ll a, b; cin >> a >> b;
+    if(isEven(a)) cout << "YES" << el;
+    else cout << "NO" << el;
 }
 signed main()
 {

@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 #define ROCKET ios :: sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 #define ll long long
@@ -91,8 +90,18 @@ ll digitSum(ll n)
 }
 void solve()
 {
-    cout << gcd(5, gcd(3, 1)) << el;
-    cout << gcd(4, 2) << el;
+    int n; cin >>  n;
+    string x; cin >> x;
+    int one = 0, zero =  0;
+    fr(i, 0, x.size(), 1)
+    {
+        if(x[i] == '1') one++;
+        else zero++;
+    }
+
+    int mn_pr = min(one, zero);
+    if(isEven(mn_pr)) cout << "Ramos" << el;
+    else cout << "Zlatan" << el;
 }
 signed main()
 {

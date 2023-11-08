@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 #define ROCKET ios :: sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 #define ll long long
@@ -91,9 +90,26 @@ ll digitSum(ll n)
 }
 void solve()
 {
-    cout << gcd(5, gcd(3, 1)) << el;
-    cout << gcd(4, 2) << el;
-}
+    int n; cin >> n;
+    vtr<int> v(n);
+    fr(i, 0, n, 1) cin >> v[i];
+    int optimal = imax;
+    if(n == 2) optimal = min(optimal, abs(v[0] - v[1]));
+    else
+    {
+        optimal = min(optimal, abs(v[0] - v[1]));
+        optimal = min(optimal, abs(v[n-2] - v[n-1]));
+        vtr<int> bobMx;
+        fr(i, 1, n - 1, 1)
+        {
+            int val1 = abs(v[i] - v[i-1]);
+            int val2 = abs(v[i] - v[i+1]);
+            bobMx.pb(max(val1, val2));
+        }
+        efr(val, bobMx) optimal = min(optimal, val);
+    }
+    cout << optimal << el;
+}   
 signed main()
 {
     ROCKET

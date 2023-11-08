@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 #define ROCKET ios :: sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 #define ll long long
@@ -91,8 +90,30 @@ ll digitSum(ll n)
 }
 void solve()
 {
-    cout << gcd(5, gcd(3, 1)) << el;
-    cout << gcd(4, 2) << el;
+    int n; cin >> n;
+    string x; cin >> x;
+    char server = 'A';
+    int alice = 0, bob = 0;
+    fr(i, 0, x.size(), 1)
+    {
+        if(x[i] == 'A' and server == 'A')
+        {
+            alice++;
+        }
+        else if(x[i] == 'A' and server == 'B')
+        {
+            server = 'A';
+        }
+        else if(x[i] == 'B' and server == 'B')
+        {
+            bob++;
+        }
+        else if(x[i] == 'B' and server == 'A')
+        {
+            server = 'B';
+        }
+    }
+    cout << alice << " " << bob << el;
 }
 signed main()
 {

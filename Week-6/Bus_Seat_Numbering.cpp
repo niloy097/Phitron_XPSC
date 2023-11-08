@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 #define ROCKET ios :: sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 #define ll long long
@@ -91,8 +90,23 @@ ll digitSum(ll n)
 }
 void solve()
 {
-    cout << gcd(5, gcd(3, 1)) << el;
-    cout << gcd(4, 2) << el;
+    int n; cin >> n;
+    if(n >= 1 and n <= 15)
+    {
+        if(n >=1 and n <= 10)
+        {
+            cout << "Lower Double" << el;
+        }
+        else cout << "Lower Single" << el;
+    }
+    else
+    {
+        if(n >= 16 and n <= 25)
+        {
+            cout << "Upper Double" << el;
+        }
+        else cout << "Upper Single" << el;
+    }
 }
 signed main()
 {
