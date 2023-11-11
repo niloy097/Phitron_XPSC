@@ -8,7 +8,7 @@
 #define el '\n'
 #define vtr vector
 #define pb push_back
-#define MOD 1e9 + 7
+#define MOD int(1e9 + 7)
 #define imax INT_MAX
 #define imin INT_MIN
 #define pr pair<int, int>
@@ -90,31 +90,23 @@ ll digitSum(ll n)
 }
 void solve()
 {
-    string s;
-    cin >> s;
-    if (s.size() == 1)
-           cout << 1 << el;
-    else
+    int n;
+    int k;
+    cin >> n >> k;
+
+    unsigned long long int count = 1;
+    for (int i = 0; i < n; i++)
     {
-           int h = s.size() - 1, j = 0;
-           for (int i = 0; i < s.size(); ++i)
-           {
-            if (s[i] == '0')
-            {
-                h = i;
-                break;
-            }
-           }
-           for (int i = s.size() - 1; i >= 0; --i)
-           {
-            if (s[i] == '1')
-            {
-                j = i;
-                break;
-            }
-           }
-           cout << abs(h - j) + 1 << endl;
+        if (k > 0)
+        {
+            count = (k * count) % MOD;
+            k--;
+        }
+        else
+            break;
     }
+    cout << count << el;
+  
 }
 signed main()
 {
